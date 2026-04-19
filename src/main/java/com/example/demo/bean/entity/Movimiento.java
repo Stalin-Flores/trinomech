@@ -1,5 +1,6 @@
 package com.example.demo.bean.entity;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
@@ -10,10 +11,20 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @Entity
 @Table(name = "movimientos", schema = "public")
 public class Movimiento {
+	
+	private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,8 +39,8 @@ public class Movimiento {
     private LocalDateTime fecha;
 
     @Column(name = "tipo_movimiento")
-    private String tipoMovimiento; // Entrada o Salida
-
+    private String tipoMovimiento;
+    
     @Column(name = "cantidad")
     private Integer cantidad;
 
@@ -39,61 +50,4 @@ public class Movimiento {
     @Column(name = "observaciones")
     private String observaciones;
 
-    // getters y setters
-    public Integer getIdMovimiento() {
-        return idMovimiento;
-    }
-
-    public void setIdMovimiento(Integer idMovimiento) {
-        this.idMovimiento = idMovimiento;
-    }
-
-    public Material getMaterial() {
-        return material;
-    }
-
-    public void setMaterial(Material material) {
-        this.material = material;
-    }
-
-    public LocalDateTime getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(LocalDateTime fecha) {
-        this.fecha = fecha;
-    }
-
-    public String getTipoMovimiento() {
-        return tipoMovimiento;
-    }
-
-    public void setTipoMovimiento(String tipoMovimiento) {
-        this.tipoMovimiento = tipoMovimiento;
-    }
-
-    public Integer getCantidad() {
-        return cantidad;
-    }
-
-    public void setCantidad(Integer cantidad) {
-        this.cantidad = cantidad;
-    }
-
-    public Integer getStockResultante() {
-        return stockResultante;
-    }
-
-    public void setStockResultante(Integer stockResultante) {
-        this.stockResultante = stockResultante;
-    }
-
-    public String getObservaciones() {
-        return observaciones;
-    }
-
-    public void setObservaciones(String observaciones) {
-        this.observaciones = observaciones;
-    }
- 
 }

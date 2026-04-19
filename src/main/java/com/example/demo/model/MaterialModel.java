@@ -8,15 +8,14 @@ import com.example.demo.bean.entity.Material;
 import com.example.demo.persistence.MaterialRepository;
 import com.example.demo.usecase.MaterialUseCase;
 
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
 @Service
-public class MaterialService implements MaterialUseCase {
+public class MaterialModel implements MaterialUseCase {
 
     private final MaterialRepository repository;
 
-    // 🔥 CONSTRUCTOR MANUAL (SOLUCIONA TODO)
-    public MaterialService(MaterialRepository repository) {
-        this.repository = repository;
-    }
 
     @Override
     public List<Material> listar() {

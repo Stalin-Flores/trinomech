@@ -1,18 +1,19 @@
 package com.example.demo.controller;
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.demo.bean.entity.Material;
-import com.example.demo.model.MaterialService;
+import com.example.demo.model.MaterialModel;
 
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/materiales")
 @CrossOrigin("*")
 public class MaterialController {
 
-    @Autowired
-    private MaterialService service;
+    private final MaterialModel service;
 
     @GetMapping
     public List<Material> listar() {
