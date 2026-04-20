@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 import com.example.demo.bean.entity.Movimiento;
-import com.example.demo.persistence.MovimientoRepository;
+import com.example.demo.usecase.MovimientoUseCase;
 
 import lombok.RequiredArgsConstructor;
 
@@ -15,10 +15,10 @@ import lombok.RequiredArgsConstructor;
 @CrossOrigin("*")
 public class MovimientoController {
 
-    private final MovimientoRepository repository;
+    private final MovimientoUseCase movimientoUseCase;
 
     @GetMapping
-    public List<Movimiento> listar() {
-        return repository.findAll();
+    public List<Movimiento> Listar() {
+        return movimientoUseCase.Listar();
     }
 }

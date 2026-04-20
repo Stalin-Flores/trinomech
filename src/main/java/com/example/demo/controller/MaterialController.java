@@ -3,7 +3,7 @@ import java.util.List;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.demo.bean.entity.Material;
-import com.example.demo.model.MaterialModel;
+import com.example.demo.usecase.MaterialUseCase;
 
 import lombok.RequiredArgsConstructor;
 
@@ -13,7 +13,7 @@ import lombok.RequiredArgsConstructor;
 @CrossOrigin("*")
 public class MaterialController {
 
-    private final MaterialModel service;
+    private final MaterialUseCase service;
 
     @GetMapping
     public List<Material> listar() {

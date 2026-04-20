@@ -3,7 +3,7 @@ package com.example.demo.controller;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.demo.bean.entity.Entrada;
-import com.example.demo.model.EntradaModel;
+import com.example.demo.usecase.EntradaUseCase;
 
 import lombok.RequiredArgsConstructor;
 
@@ -13,7 +13,7 @@ import lombok.RequiredArgsConstructor;
 @CrossOrigin("*")
 public class EntradaController {
 
-    private final EntradaModel service;
+    private final EntradaUseCase service;
 
     @PostMapping
     public Entrada registrar(@RequestBody Entrada entrada) {
