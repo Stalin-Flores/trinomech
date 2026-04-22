@@ -1,6 +1,5 @@
 package com.example.demo.model;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.bean.entity.Material;
@@ -9,22 +8,24 @@ import com.example.demo.bean.entity.Salida;
 import com.example.demo.persistence.MaterialRepository;
 import com.example.demo.persistence.MovimientoRepository;
 import com.example.demo.persistence.SalidaRepository;
+import com.example.demo.usecase.SalidaUseCase;
+
+import lombok.RequiredArgsConstructor;
 
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 
+@RequiredArgsConstructor
 @Service
-public class SalidaService {
+public class SalidaModel implements SalidaUseCase {
 
-    @Autowired
-    private SalidaRepository salidaRepository;
+    private final SalidaRepository salidaRepository;
 
-    @Autowired
-    private MaterialRepository materialRepository;
+    private final MaterialRepository materialRepository;
 
-    @Autowired
-    private MovimientoRepository movimientoRepository; // 🔥 NUEVO
+    private final  MovimientoRepository movimientoRepository;
+    
     @Transactional
     public Salida registrarSalida(Salida salida) {
 
@@ -50,7 +51,7 @@ public class SalidaService {
         // 6. Guardar salida
         Salida salidaGuardada = salidaRepository.save(salida);
 
-        // 🔥 7. CREAR MOVIMIENTO
+        // 7. CREAR MOVIMIENTO
         Movimiento mov = new Movimiento();
         mov.setMaterial(material);
         mov.setFecha(LocalDateTime.now());

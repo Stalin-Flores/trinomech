@@ -1,7 +1,5 @@
 package com.example.demo.model;
 
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.bean.entity.Entrada;
@@ -10,21 +8,26 @@ import com.example.demo.bean.entity.Movimiento;
 import com.example.demo.persistence.EntradaRepository;
 import com.example.demo.persistence.MaterialRepository;
 import com.example.demo.persistence.MovimientoRepository;
+import com.example.demo.usecase.EntradaUseCase;
+
+import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDateTime;
 import org.springframework.transaction.annotation.Transactional;
 
+@RequiredArgsConstructor
 @Service
-public class EntradaService {
+public class EntradaModel implements EntradaUseCase{
 
-    @Autowired
-    private EntradaRepository entradaRepository;
 
-    @Autowired
-    private MaterialRepository materialRepository;
+    private final EntradaRepository entradaRepository;
 
-    @Autowired
-    private MovimientoRepository movimientoRepository;
+
+    private final MaterialRepository materialRepository;
+
+
+    private final MovimientoRepository movimientoRepository;
+    
     @Transactional
     public Entrada registrarEntrada(Entrada entrada) {
     	System.out.println(">>> LLEGÓ A ENTRADA SERVICE");
@@ -40,7 +43,6 @@ public class EntradaService {
 
         Entrada entradaGuardada = entradaRepository.save(entrada);
 
-        // 🔥 MOVIMIENTO
         Movimiento mov = new Movimiento();
         mov.setMaterial(material);
         mov.setFecha(LocalDateTime.now());

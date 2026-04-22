@@ -7,16 +7,17 @@ import com.example.demo.bean.entity.Usuario;
 import com.example.demo.persistence.UsuarioRepository;
 import com.example.demo.security.JwtUtil;
 
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/auth")
 @CrossOrigin("*")
 public class AuthController {
 
-    @Autowired
-    private UsuarioRepository usuarioRepository;
+    private final UsuarioRepository usuarioRepository;
 
-    @Autowired
-    private JwtUtil jwtUtil;
+    private final JwtUtil jwtUtil;
 
     @PostMapping("/login")
     public String login(@RequestBody Usuario request) {
