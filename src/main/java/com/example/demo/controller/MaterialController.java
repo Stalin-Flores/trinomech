@@ -25,6 +25,12 @@ public class MaterialController {
         return service.guardar(material);
     }
 
+    @PutMapping("/{id}")
+    public Material actualizar(@PathVariable Integer id, @RequestBody Material material) {
+        material.setIdMaterial(id);
+        return service.actualizar(material);
+    }
+
     @GetMapping("/{id}")
     public Material obtener(@PathVariable Integer id) {
         return service.obtenerPorId(id);

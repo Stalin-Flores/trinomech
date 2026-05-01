@@ -9,6 +9,8 @@ public interface MaterialUseCase {
 
     Material guardar(Material material);
 
+    Material actualizar(Material material);
+
     Material obtenerPorId(Integer id);
 
     void eliminar(Integer id);

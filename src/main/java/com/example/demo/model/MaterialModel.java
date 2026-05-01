@@ -28,6 +28,11 @@ public class MaterialModel implements MaterialUseCase {
     }
 
     @Override
+    public Material actualizar(Material material) {
+        return repository.save(material);
+    }
+
+    @Override
     public Material obtenerPorId(Integer id) {
         return repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Material no encontrado"));

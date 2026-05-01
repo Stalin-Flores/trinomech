@@ -22,6 +22,22 @@ public class JwtFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse res = (HttpServletResponse) response;
 
+        // Cabeceras CORS para permitir llamadas desde Angular en desarrollo.
+        String origin = req.getHeader("Origin");
+        if (origin != null && !origin.isBlank()) {
+            res.setHeader("Access-Control-Allow-Origin", origin);
+            res.setHeader("Vary", "Origin");
+        }
+        res.setHeader("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS");
+        res.setHeader("Access-Control-Allow-Headers", "Authorization,Content-Type");
+        res.setHeader("Access-Control-Max-Age", "3600");
+
+        // El preflight (OPTIONS) no debe exigir token.
+        if ("OPTIONS".equalsIgnoreCase(req.getMethod())) {
+            res.setStatus(HttpServletResponse.SC_OK);
+            return;
+        }
+
         String path = req.getRequestURI();
 
         // 🔓 PERMITIR LOGIN SIN TOKEN
